@@ -14,7 +14,7 @@ public class Main {
         }
         return s;
     }
-    
+
     public static void main(String[] args) {
         double in=integrate(0.1, PI,100000);
         System.out.println(in);

@@ -1,21 +1,21 @@
 package com.company;
 
 public class ArrayList {
-     final int InitialSize=100;
-     int elements[];
-     int count;
+     private final int InitialSize=100;
+     private int elements[];
+     private int count;
 
-//    void setElements(int elements,int count){
-//        this.elements[count] = elements;
-//    }
+    void setElements(int elements,int count){
+        this.elements[count] = elements;
+    }
 
-//    void setCount(int count){
-//        if (count<100){
-//            this.count=count;
-//        } else {
-//            System.err.println("No free");
-//        }
-//    }
+    void setCount(int count){
+        if (count<100){
+            this.count=count;
+        } else {
+            System.err.println("No free");
+        }
+    }
 
     public ArrayList() {
         elements = new int[InitialSize];
@@ -39,13 +39,13 @@ public class ArrayList {
          count++;
          }
 
-//    int getCount(){
-//     return count;
-//     }
+    int getCount(){
+     return count;
+     }
 
-//    int getElements(int index){
-//      return elements[index];
-//    }
+    int getElements(int index){
+      return elements[index];
+    }
 
     public int get(int index) {
        return elements[index];

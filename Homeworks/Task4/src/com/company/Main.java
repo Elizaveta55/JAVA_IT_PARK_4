@@ -56,8 +56,8 @@ public class Main {
                     if (mark[num]!=true){
                         System.err.println("Нет такого списка");
                     } else {
-                        for(int i=0;i<lists[num].count;i++){
-                            System.out.println(lists[num].elements[i]);
+                        for(int i=0;i<lists[num].getCount();i++){
+                            System.out.println(lists[num].getElements(i));
                         }
                     }
                     break;
@@ -83,8 +83,8 @@ public class Main {
                                 int index = scanner.nextInt();
                                 lists[num].replace(index,elem);
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].count;i++) {
-                                    System.out.println(lists[num].elements[i]);
+                                for(int i=0;i<lists[num].getCount();i++) {
+                                    System.out.println(lists[num].getElements(i));
                                 }
                                 break;
                             case 2:
@@ -99,22 +99,22 @@ public class Main {
                                 index = scanner.nextInt();
                                 lists[num].replace2(index,elem);
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].count;i++) {
-                                    System.out.println(lists[num].elements[i]);
+                                for(int i=0;i<lists[num].getCount();i++) {
+                                    System.out.println(lists[num].getElements(i));
                                 }
                                 break;
                             case 4:
                                 lists[num].sort();
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].count;i++) {
-                                    System.out.println(lists[num].elements[i]);
+                                for(int i=0;i<lists[num].getCount();i++) {
+                                    System.out.println(lists[num].getElements(i));
                                 }
                                 break;
                             case 5:
                                 lists[num].reverse();
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].count;i++) {
-                                    System.out.println(lists[num].elements[i]);
+                                for(int i=0;i<lists[num].getCount();i++) {
+                                    System.out.println(lists[num].getElements(i));
                                 }
                                 break;
                             case 6:
@@ -122,8 +122,8 @@ public class Main {
                                 index = scanner.nextInt();
                                 lists[num].remove(index);
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].count;i++) {
-                                    System.out.println(lists[num].elements[i]);
+                                for(int i=0;i<lists[num].getCount();i++) {
+                                    System.out.println(lists[num].getElements(i));
                                 }
                                 break;
                             case 7:

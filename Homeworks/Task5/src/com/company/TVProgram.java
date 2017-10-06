@@ -3,18 +3,18 @@ package com.company;
 import java.time.LocalTime;
 
 public class TVProgram {
-    private string name;
+    private String name;
     private LocalTime beginTime;
     private LocalTime endTime;
 
-    public TVProgram(string name,LocalTime beginTime,
+    public TVProgram(String name,LocalTime beginTime,
                      LocalTime endTime){
         this.name=name;
         this.beginTime=beginTime;
         this.endTime=endTime;
     }
 
-    public string getName(){
+    public String getName(){
         return name;
     }
 
@@ -26,7 +26,7 @@ public class TVProgram {
         return endTime;
     }
 
-    public void toChannel(){
-        //доделать!!!
+    public void toChannel(TVChannel tvChannel){
+        tvChannel.broadcastTVProgram(this);
     }
 }

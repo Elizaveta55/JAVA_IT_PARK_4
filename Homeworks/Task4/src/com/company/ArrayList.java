@@ -11,7 +11,7 @@ public class ArrayList {
 
     void setCount(int count){
         if (count<100){
-            this.count=count;
+            this.count = count;
         } else {
             System.err.println("No free");
         }
@@ -53,25 +53,25 @@ public class ArrayList {
 
     public void replace(int index, int element) {
          int temp;
-         for (int i=count;i>index;i--){
-             temp=elements[i+1];
-             elements[i]=elements[i-1];
+         for (int i = count;i > index;i --){
+             temp = elements[i+1];
+             elements[i] = elements[i-1];
          }
-       elements[index]=element;
+       elements[index] = element;
         count++;
      }
 
     public void replace2(int index, int element) {
-        elements[index]=element;
+        elements[index] = element;
     }
 
     public void sort(){
-        for (int i=0;i<count-1;i++){
-            for (int j=i+1;j<count;j++){
-                if (elements[j]>elements[i]){
-                    int temp=elements[j];
-                    elements[j]=elements[i];
-                    elements[i]=temp;
+        for (int i = 0;i < count-1 ; i++){
+            for (int j = i+1; j < count; j++){
+                if (elements[j] > elements[i]){
+                    int temp = elements[j];
+                    elements[j] = elements[i];
+                    elements[i] = temp;
                 }
             }
         }
@@ -79,10 +79,10 @@ public class ArrayList {
 
     public void reverse(){
         int temp;
-        for (int i=0;i<count/2;i++){
-            temp=elements[i];
-            elements[i]=elements[count-i-1];
-            elements[count-i-1]=temp;
+        for (int i=0; i < count / 2; i++){
+            temp = elements[i];
+            elements[i] = elements[count-i-1];
+            elements[count-i-1] = temp;
         }
 
     }
@@ -96,10 +96,10 @@ public class ArrayList {
 
     public int find(int element) {
             int i=0;
-            while (elements[i]!=element && i<=count){
+            while (elements[i] != element && i <= count){
                 i++;
             }
-            if (elements[i]==element){
+            if (elements[i] == element){
                 return i;
             } else {
                 return -1;

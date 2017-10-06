@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         ArrayList lists[] = new ArrayList[5];
         boolean mark[] = new boolean[5];
-        for (int i=0;i<5;i++) {mark[i]=false;}
+        for (int i = 0;i < 5; i++) {mark[i] = false;}
         Scanner scanner = new Scanner(System.in);
         while (true){
             System.out.println("Меню:");
@@ -21,17 +21,17 @@ public class Main {
                 case 1:
                     System.out.println("Введите номер списка");
                     int number=scanner.nextInt();
-                    mark[number]=true;
-                    if (number>5){
+                    mark[number] = true;
+                    if (number > 5){
                         System.err.println("Неверный вариант");
                     } else {
-                        lists[number]=new ArrayList();
+                        lists[number] = new ArrayList();
                         while(true) {
                             System.out.println("Добавить элемент в:");
                             System.out.println("1. конец");
                             System.out.println("2. начало");
                             System.out.println("3. закончить");
-                            int command2=scanner.nextInt();
+                            int command2 = scanner.nextInt();
                             switch (command2) {
                                 case 1:
                                     System.out.println("Введите число, которое нужно добавить в конец списка");
@@ -46,25 +46,25 @@ public class Main {
                                 case 3:
                                     break;
                             }
-                            if (command2==3) break;
+                            if (command2 == 3) break;
                         }
                     }
                     break;
                 case 2:
                     System.out.println("Введите номер списка, который хотите посмотреть");
-                    int num= scanner.nextInt();
-                    if (mark[num]!=true){
+                    int num = scanner.nextInt();
+                    if (mark[num] != true){
                         System.err.println("Нет такого списка");
                     } else {
-                        for(int i=0;i<lists[num].getCount();i++){
+                        for(int i = 0;i < lists[num].getCount(); i++){
                             System.out.println(lists[num].getElements(i));
                         }
                     }
                     break;
                 case 3:
                     System.out.println("Введите номер списка");
-                    num= scanner.nextInt();
-                    if (mark[num]==true) {
+                    num = scanner.nextInt();
+                    if (mark[num] == true) {
                         System.out.println("Выберите нужный вариант:");
                         System.out.println("1. Вставить элемент в заданную позицию со сдвигом");
                         System.out.println("2. Получить элемент по индексу");
@@ -83,7 +83,7 @@ public class Main {
                                 int index = scanner.nextInt();
                                 lists[num].replace(index,elem);
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].getCount();i++) {
+                                for(int i = 0;i < lists[num].getCount(); i++) {
                                     System.out.println(lists[num].getElements(i));
                                 }
                                 break;
@@ -99,21 +99,21 @@ public class Main {
                                 index = scanner.nextInt();
                                 lists[num].replace2(index,elem);
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].getCount();i++) {
+                                for(int i = 0; i < lists[num].getCount(); i++) {
                                     System.out.println(lists[num].getElements(i));
                                 }
                                 break;
                             case 4:
                                 lists[num].sort();
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].getCount();i++) {
+                                for(int i = 0;i < lists[num].getCount(); i++) {
                                     System.out.println(lists[num].getElements(i));
                                 }
                                 break;
                             case 5:
                                 lists[num].reverse();
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].getCount();i++) {
+                                for(int i = 0; i < lists[num].getCount(); i++) {
                                     System.out.println(lists[num].getElements(i));
                                 }
                                 break;
@@ -122,7 +122,7 @@ public class Main {
                                 index = scanner.nextInt();
                                 lists[num].remove(index);
                                 System.out.println("Получили список:");
-                                for(int i=0;i<lists[num].getCount();i++) {
+                                for(int i = 0;i < lists[num].getCount(); i++) {
                                     System.out.println(lists[num].getElements(i));
                                 }
                                 break;
@@ -134,7 +134,7 @@ public class Main {
                             case 8:
                                 break;
                         }
-                        if (command3==8) break;
+                        if (command3 == 8) break;
                     } else{
                         System.err.println("Нет такого списка");
                     }
@@ -142,7 +142,7 @@ public class Main {
                 case 4:
                     break;
             }
-            if (command==4) break;
+            if (command == 4) break;
         }
     }
 }

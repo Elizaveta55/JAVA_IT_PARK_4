@@ -15,6 +15,6 @@ public class TV {
         System.out.print("Channel - ");
         System.out.println(tvChannel.getnameChannel());
         System.out.print("Program - ");
-       // System.out.println();
+        System.out.println(tvChannel.getNameProgram());
     }
 }

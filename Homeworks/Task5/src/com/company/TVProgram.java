@@ -26,7 +26,7 @@ public class TVProgram {
         return endTime;
     }
 
-    public void toChannel(TVChannel tvChannel){
-        tvChannel.broadcastTVProgram(this);
+    public void toChannel(TVChannel tvChannel, TV tv){
+        tvChannel.broadcastTVProgram(this, tv);
     }
 }

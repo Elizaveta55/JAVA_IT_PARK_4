@@ -8,6 +8,7 @@ public class TVChannel {
     private TVProgram tvProgram[];
     private LocalTime beginTime;
     private LocalTime endTime;
+    LocalTime currentTime = LocalTime.now();
 
     public TVChannel(String nameChannel){
         this.nameChannel = nameChannel;
@@ -18,8 +19,21 @@ public class TVChannel {
         return nameChannel;
     }
 
-    public void broadcastTVProgram(TV tv){
-        //LocalTime currentTime = LocalTime.now();
+    public String getNameProgram(){
+        return tvProgram[findProgram(currentTime)].getName();
+    }
+
+    public int findProgram(LocalTime currentTime){
+        int mark=0;
+        for (int i=0;i<1;i++){
+            if ((currentTime.isAfter(tvProgram[i].getBeginTime()) && currentTime.isBefore(tvProgram[i].getEndTime()))){
+                mark=i;
+            }
+        }
+        return mark;
+    }
+
+    public void broadcastTVProgram(TVProgram tvProgram, TV tv){
         tv.broadcastTVChannel(this);
     }
 }

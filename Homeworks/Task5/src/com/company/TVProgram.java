@@ -18,6 +18,7 @@ public class TVProgram {
         return name;
     }
 
+
     public LocalTime getBeginTime() {
         return beginTime;
     }
@@ -26,7 +27,7 @@ public class TVProgram {
         return endTime;
     }
 
-    public void toChannel(TVChannel tvChannel, TV tv){
-        tvChannel.broadcastTVProgram(this, tv);
+    public void toChannel(TVProgram tvProgram[], TVChannel tvChannel, TV tv){
+        tvChannel.broadcastTVProgram(tvProgram, tv);
     }
 }

@@ -10,11 +10,11 @@ public class TV {
         tvChannel = new TVChannel[countOfChannels];
     }
 
-    public void broadcastTVChannel(TVChannel tvChannel){
+    public void broadcastTVChannel(TVProgram tvProgram[], TVChannel tvChannel){
         LocalTime currentTime = LocalTime.now();
         System.out.print("Channel - ");
         System.out.println(tvChannel.getnameChannel());
         System.out.print("Program - ");
-        System.out.println(tvChannel.getNameProgram());
+        System.out.println(tvChannel.getNameProgram(tvProgram));
     }
 }

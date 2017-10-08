@@ -12,28 +12,22 @@ public class TVChannel {
 
     public TVChannel(String nameChannel){
         this.nameChannel = nameChannel;
-        tvProgram = new TVProgram[countOfChannels];
     }
 
     public String getnameChannel(){
         return nameChannel;
     }
 
-    public String getNameProgram(){
-        return tvProgram[findProgram(currentTime)].getName();
-    }
-
-    public int findProgram(LocalTime currentTime){
-        int mark=0;
-        for (int i=0;i<1;i++){
-            if ((currentTime.isAfter(tvProgram[i].getBeginTime()) && currentTime.isBefore(tvProgram[i].getEndTime()))){
-                mark=i;
+    public String getNameProgram(TVProgram tvProgram[]){
+        for (int i=0;i<4;i++) {
+            if ((currentTime.isAfter(tvProgram[i].getBeginTime()) && currentTime.isBefore(tvProgram[i].getEndTime()))) {
+                return tvProgram[i].getName();
             }
         }
-        return mark;
+        return "Mistake";
     }
 
-    public void broadcastTVProgram(TVProgram tvProgram, TV tv){
-        tv.broadcastTVChannel(this);
+    public void broadcastTVProgram(TVProgram tvProgram[], TV tv){
+        tv.broadcastTVChannel(tvProgram, this);
     }
 }

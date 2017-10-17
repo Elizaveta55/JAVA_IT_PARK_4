@@ -3,23 +3,36 @@ package com.company;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
-public class Parser implements Observable{
+public class Parser implements Observable {
     String string;
     private Methodd[] methodds = new Methodd[3];
     private int count;
 
-//    public Parser(Locale.Builder builder){
-//
+//    public Parser(Builder builder){
+//         this.methodds[0] = builder.methodd1;
+//         this.methodds[1] = builder.methodd2;
+//         this.methodds[2] = builder.methodd3;
 //    }
 //
-//    public static Locale.Builder builder(){
-///        return new Locale.Builder();
+//    public static Builder builder(){
+//        return new Builder();
 //    }
 //
 //    public static class Builder {
+//          private Methodd[] methodds = new Methodd[3];
 //
-//
-//
+//    public Builder methodd1(Methodd methodd1){
+//              this.methodds[0] = methodd1;
+//              return this;
+//    }
+//    public Builder methodd2(Methodd methodd2){
+//              this.methodds[1] = methodd2;
+//              return this;
+//    }
+//    public Builder methodd3(Methodd methodd3){
+//              this.methodds[2] = methodd3;
+//              return this;
+//    }
 //
 //       public Parser build(){
 //            return new Parser(this);

@@ -1,6 +1,6 @@
 package com.company;
 
-public class CountShift implements Methodd {
+public class CountSpace implements Methodd {
     @Override
     public void handleEvent(char symbol, int[] count) {
         if ((int)symbol == 32){

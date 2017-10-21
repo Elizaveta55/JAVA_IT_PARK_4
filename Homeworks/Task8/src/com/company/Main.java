@@ -1,5 +1,7 @@
 package com.company;
 
+import java.lang.reflect.Method;
+
 import java.util.Scanner;
 
 public class Main {
@@ -13,14 +15,15 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         System.out.println("");
         String string = scanner.nextLine();
-        Parser parser = new Parser();
-        parser.addMethodd(new CountDigit());
-        parser.addMethodd(new CountLetter());
-        parser.addMethodd(new CountSpace());
-//        Parser parser = Parser.builder();
-//                      .methodd1(new CountDigit());
-//                      .methodd2(new CountLetter());
-//                      .methodd3(new CountSpace());
+//        Parser parser = new Parser();
+//        parser.addMethodd(new CountDigit());
+//        parser.addMethodd(new CountLetter());
+//        parser.addMethodd(new CountSpace());
+        Parser parser = Parser.builder()
+                      .methoddAdd(new CountDigit())
+                      .methoddAdd(new CountLetter())
+                      .methoddAdd(new CountSpace())
+                      .build();
         parser.beforeEvent(string, count);
     }
 }

@@ -1,43 +1,32 @@
 package com.company;
 
 import java.lang.reflect.Method;
-import java.util.Locale;
 
 public class Parser implements Observable {
     String string;
     private Methodd[] methodds = new Methodd[3];
-    private int count;
+    private int count=0;
 
-//    public Parser(Builder builder){
-//         this.methodds[0] = builder.methodd1;
-//         this.methodds[1] = builder.methodd2;
-//         this.methodds[2] = builder.methodd3;
-//    }
-//
-//    public static Builder builder(){
-//        return new Builder();
-//    }
-//
-//    public static class Builder {
-//          private Methodd[] methodds = new Methodd[3];
-//
-//    public Builder methodd1(Methodd methodd1){
-//              this.methodds[0] = methodd1;
-//              return this;
-//    }
-//    public Builder methodd2(Methodd methodd2){
-//              this.methodds[1] = methodd2;
-//              return this;
-//    }
-//    public Builder methodd3(Methodd methodd3){
-//              this.methodds[2] = methodd3;
-//              return this;
-//    }
-//
-//       public Parser build(){
-//            return new Parser(this);
-//        }
-//    }
+    public Parser(Builder builder){
+         this.methodds = builder.methodds;
+         this.count = builder.count;
+    }
+
+    public static class Builder {
+        String string;
+        private Methodd[] methodds = new Methodd[3];
+        private int count=0;
+
+    public Builder methoddAdd(Methodd methodd){
+              this.methodds[count] = methodd;
+              count++;
+              return this;
+    }
+       public Parser build(){
+            return new Parser(this);
+        }
+
+    }
 
     @Override
     public void addMethodd(Methodd methodd) {
@@ -47,9 +36,23 @@ public class Parser implements Observable {
 
     public void beforeEvent (String string, int[] countt){
         char array[] = string.toCharArray();
+        char word[] = new char[array.length];
+        int mark = 0;
+        int wordCount=0;
         for (int j = 0; j < array.length; j++) {
-            event(array[j], countt);
+            if (array[j] == ' ' || j == array.length - 1) {
+                for (int k = mark; k<= j; k++){
+                    int temp=0;
+                    word[temp] = array[k];
+                    event(word[temp], countt);
+                    temp++;
+                }
+                wordCount++;
+//                event(word[j], countt);
+                mark = j;
+            }
         }
+        System.out.println("Введено слов - " + wordCount);
         for (int i=0;i<124;i++)
         {
             if (countt[i]!=0) {
@@ -68,5 +71,9 @@ public class Parser implements Observable {
         for (int i=0;i<3;i++) {
                 methodds[i].handleEvent(symbol, countt);
         }
+    }
+
+    public static Builder builder() {
+        return new Builder();
     }
 }

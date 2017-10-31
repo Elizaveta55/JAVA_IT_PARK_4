@@ -1,8 +1,8 @@
 package com.company;
 
-public class LinkedList implements List{
-    private Node head;
-    private Node tail;
+public class LinkedList<T> implements List<T>{
+    private Node<T> head;
+    private Node<T> tail;
     private int count;
 
     public LinkedList(){
@@ -12,8 +12,8 @@ public class LinkedList implements List{
     }
 
     @Override
-    public void add(Object object) {
-        Node newNode = new Node(object);
+    public void add(T object) {
+        Node<T> newNode = new Node<>(object);
         if (tail == null ){
             head = newNode;
         } else {
@@ -24,8 +24,8 @@ public class LinkedList implements List{
     }
 
     @Override
-    public void addToBegin(Object object){
-        Node newNode = new Node(object);
+    public void addToBegin(T object){
+        Node<T> newNode = new Node<>(object);
         if (head == null) {
             tail = newNode;
         }
@@ -35,16 +35,16 @@ public class LinkedList implements List{
     };
 
     @Override
-    public Iterator iterator() {
+    public Iterator<T> iterator() {
         return new LinkedListIterator();
     }
 
-    private class LinkedListIterator implements Iterator{
-        private Node currentNode = head;
+    private class LinkedListIterator implements Iterator<T>{
+        private Node<T> currentNode = head;
 
         @Override
-        public Object next(){
-            Object element = currentNode.value;
+        public T next(){
+            T element = currentNode.value;
             currentNode = currentNode.next;
             return element;
         };
@@ -55,11 +55,11 @@ public class LinkedList implements List{
         };
     }
 
-    private static class Node {
-        Object value;
-        Node next;
+    private static class Node<E> {
+        E value;
+        Node<E> next;
 
-        Node (Object object){
+        Node (E object){
             this.value = object;
         }
     }

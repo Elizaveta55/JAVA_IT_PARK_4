@@ -17,8 +17,10 @@ public class Main {
             byte name[] = new byte[Size_of_Name];
             byte age[] = new byte[Size_of_Age];
             int CountAge[] = new int [Size_of_Array_or_List];
-            int count = input.read(bytes);
             String text = null;
+
+
+            int count = input.read(bytes);
             bytes[count] = (byte)'\n'; bytes[count+1] = (byte)'\r';
             ArrayList arrayList[] = new ArrayList[Size_of_Array_or_List];
             LinkedList linkedList[] = new LinkedList[Size_of_Array_or_List];
@@ -57,7 +59,8 @@ public class Main {
                     int ageInt = Integer.parseInt(Age);
                     CountAge[ageInt]++;
 //                    System.out.println(text + " " + ageInt);
-                    linkedList[ageInt].add(text);
+                    Human human = new Human(text, ageInt);
+                    linkedList[ageInt].add(human);
                     arrayList[ageInt].add(linkedList);
                 }
             }
@@ -67,8 +70,6 @@ public class Main {
 
                     Iterator iteratorLink = linkedList[i].iterator();
                     printerOfIterable.print(iteratorLink);
-//                    Iterator iteratorArray = arrayList[i].iterator();
-//                    printerOfIterable.print(iteratorArray);
                 }
             }
         } catch (java.io.IOException e) {

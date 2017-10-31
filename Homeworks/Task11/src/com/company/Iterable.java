@@ -1,5 +1,5 @@
 package com.company;
 
-public interface Iterable {
-    Iterator iterator();
+public interface Iterable<T> {
+    Iterator<T> iterator();
 }

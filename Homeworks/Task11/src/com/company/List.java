@@ -1,6 +1,6 @@
 package com.company;
 
-public interface List extends Iterable{
-    public void add(Object object);
-    public void addToBegin(Object object);
+public interface List<T> extends Iterable<T>{
+    public void add(T object);
+    public void addToBegin(T object);
 }

@@ -1,7 +1,6 @@
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import javax.sql.DataSource;
-import javax.swing.tree.RowMapper;
 import java.util.List;
 
 public class AutoDao implements AutosDao {
@@ -23,14 +22,9 @@ public class AutoDao implements AutosDao {
     private static final String SQL_DELETE_BY_ID =
             "DELETE FROM autos WHERE id = ?";
 
-    private static final String SQL_UPDATE_NAME =
-            "UPDATE autos SET name = ? WHERE id = ?";
+    private static final String SQL_UPDATE_BY_ID =
+            "UPDATE autos" + " SET name = ?, model = ?, color = ? WHERE id = ?";
 
-    private static final String SQL_UPDATE_MODEL =
-            "UPDATE autos SET model = ? WHERE id = ?";
-
-    private static final String SQL_UPDATE_COLOR =
-            "UPDATE autos SET color = ? WHERE id = ?";
 
 
     private JdbcTemplate template;
@@ -59,14 +53,6 @@ public class AutoDao implements AutosDao {
         return null;
     }
 
-//    @Override
-//    public Human findOwnerByModel(String model) {
-//        List<Auto> result = template.query(SQL_FIND_BY_MODEL, rowMapper, model);
-//        if (result.size() > 0){
-//            return result.get(0);
-//        }
-//        return null;
-//    }
 
     @Override
     public void save(Auto model) {
@@ -87,10 +73,8 @@ public class AutoDao implements AutosDao {
     public void update(Auto model) {
         List<Auto> result = template.query(SQL_FIND_BY_ID, rowMapper, model.getID());
         if (result.size() > 0){
-            template.update(SQL_UPDATE_NAME, model.getName(), model.getID());
-            template.update(SQL_UPDATE_MODEL, model.getModel(), model.getID());
-            template.update(SQL_UPDATE_COLOR, model.getColor(), model.getID());
-            List<Auto> result2 = template.query(SQL_INSERT_USER, rowMapper, model);
+            template.update(SQL_UPDATE_BY_ID, model.getName(), model.getModel(), model.getColor(), model.getID());
+//            List<Auto> result2 = template.query(SQL_INSERT_USER, rowMapper, model);
         }
     }
 

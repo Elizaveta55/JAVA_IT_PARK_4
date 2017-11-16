@@ -1,5 +1,4 @@
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
 import javax.sql.DataSource;
 import java.util.List;
@@ -18,11 +17,9 @@ public class HumanDaoJdbcTemplate implements HumansDao {
     private static final String SQL_DELETE_BY_ID =
             "DELETE FROM humans WHERE id = ?";
 
-    private static final String SQL_UPDATE_NAME =
-            "UPDATE humans SET name = ? WHERE id = ?";
+    private static final String SQL_UPDATE_BY_ID =
+            "UPDATE humans" + " SET name = ?, age = ? WHERE id = ?";
 
-    private static final String SQL_UPDATE_AGE =
-            "UPDATE humans SET age = ? WHERE id = ?";
 
     private static final String SQL_INSERT_USER =
             "INSERT INTO humans(age, name) VALUES (?, ?)";
@@ -69,15 +66,14 @@ public class HumanDaoJdbcTemplate implements HumansDao {
 
     @Override
     public void update(Human model) {
-        List<Human> result = template.query(SQL_FIND_BY_ID, rowMapper, model.getId());
-        if (result.size() > 0){
-            template.update(SQL_UPDATE_AGE, model.getAge(), model.getId());
-            template.update(SQL_UPDATE_NAME, model.getName(), model.getId());
+        //List<Human> result = template.query(SQL_FIND_BY_ID, rowMapper, model.getId());
+        //if (result.size() > 0){
+              template.update(SQL_UPDATE_BY_ID, model.getName(), model.getAge(), model.getId());
 //            List<Human> result2 = template.query(SQL_INSERT_USER, rowMapper, model);
-        }
-        else {
-            System.err.println("No");
-        }
+        //}
+        //else {
+        //    System.err.println("No");
+        //}
     }
 
     @Override

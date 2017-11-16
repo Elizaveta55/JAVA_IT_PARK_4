@@ -78,6 +78,7 @@ public class Main {
                     System.out.println("Введи новое имя");
                     name = scanner.next();
                     human = Human.builder()
+                            .id(id)
                             .age(age)
                             .name(name)
                             .build();

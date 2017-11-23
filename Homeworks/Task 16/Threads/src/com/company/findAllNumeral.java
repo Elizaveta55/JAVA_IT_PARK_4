@@ -3,9 +3,9 @@ package com.company;
 import static com.company.TextViewer.text;
 
 public class findAllNumeral extends WorkWithThread implements Task{
-    public void run(){
-        HandleEvent(text);
-    }
+//    public void run(){
+//        HandleEvent(text);
+//    }
 
     @Override
     public void HandleEvent(String text) {

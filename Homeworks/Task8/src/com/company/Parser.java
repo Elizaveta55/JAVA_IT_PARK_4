@@ -68,9 +68,7 @@ public class Parser implements Observable {
 
     @Override
     public void event(char symbol, int[] countt) {
-        for (int i=0;i<3;i++) {
-                methodds[i].handleEvent(symbol, countt);
-        }
+
     }
 
     public static Builder builder() {

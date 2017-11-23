@@ -28,25 +28,7 @@ public class HashMap<K,V> implements Map<K, V> {
 
     @Override
     public Sset<K>[] keySet(K key){
-//        int hash = key.hashCode();
-//        int count = 0;
-//        int index = hash & buckets.length - 1;
-//        if (buckets[index] == null){
-//            return null;
-//        } else {
-//            Node<K,V> current = buckets[index];
-//            while (current.next != null) {
-//                if (current.key.equals(key)){
-//                    Sset<K> newKey = new Sset<>(key);
-//                    setOfKeys[count++] = newKey;
-//                }
-//            }
-//            if (current.key.equals(key)) {
-//                Sset<K> newKey = new Sset<>(key);
-//                setOfKeys[count++] = newKey;
-//            }
-//            return setOfKeys;
-//        }
+
         boolean flag = false;
         if (setOfKeys[0] == null) {
             Sset<K> newNode = new Sset<>(key);

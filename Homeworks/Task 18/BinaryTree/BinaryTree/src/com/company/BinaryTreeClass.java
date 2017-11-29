@@ -1,63 +1,71 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class BinaryTreeClass {
     private Node mainRoot;
     private int count;
+    Scanner scanner = new Scanner(System.in);
 
     public BinaryTreeClass(){
         this.mainRoot = null;
         this.count = 0;
     }
 
-    public Node getMainRoot() {
-        return mainRoot;
+    public void BeginPrefix(){
+        prefix(mainRoot);
     }
 
-    public void add(int value){
-        if (count == 0){
+    public void BeginInfix(){
+        infix(mainRoot);
+    }
+
+    public void BeginPostfix(){
+        postfix(mainRoot);
+    }
+
+    public void BeginAdd(int value){
+        if (mainRoot == null) {
             mainRoot = new Node(value);
-            mainRoot.left = null;
-            mainRoot.right = null;
-            count++;
+            System.out.println("Введи элемент массива");
+            value = scanner.nextInt();
         }
-        else {
-            Node current = mainRoot;
-            while (true){
-                if (value > current.value && current.right != null){
-                    current = current.right;
-                } else {
-                    if (value > current.value && current.right == null) {
-                        Node NewNode = new Node(value);
-                        current.right = NewNode;
-                        count++;
-                        break;
-                    }
-                }
-                if (value < current.value && current.left != null){
-                    current = current.left;
-                } else {
-                    if (value < current.value && current.left == null) {
-                        Node NewNode = new Node(value);
-                        current.left = NewNode;
-                        count++;
-                        break;
-                    }
-                }
+            while (value!=0){
+                add(mainRoot, value);
+                System.out.println("Введи элемент массива");
+                value = scanner.nextInt();
+            }
+    }
+
+    public void add(Node current, int value) {
+        if (value > current.value) {
+            if (current.right == null){
+                current.right = new Node(value);
+            }else {
+                add(current.right, value);
+            }
+        }
+        if (value < current.value) {
+            if (current.left == null) {
+                current.left = new Node(value);
+            }
+            else{
+                add(current.left, value);
             }
         }
     }
 
-    public void prefix(Node current) {
-        if (current != null) {
-            System.out.print(current.value + " ");
-            prefix(current.left);
-            prefix(current.right);
-        } else {
+
+    private void prefix(Node current) {
+        if (current == null){
             return;
         }
+        System.out.print(current.value + " ");
+        prefix(current.left);
+        prefix(current.right);
     }
 
-    public void infix(Node current){
+    private void infix(Node current){
         if (current == null){
             return;
         }
@@ -66,7 +74,7 @@ public class BinaryTreeClass {
         infix(current.right);
     }
 
-    public void postfix(Node current){
+    private void postfix(Node current){
         if (current == null){
             return;
         }

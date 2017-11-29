@@ -7,16 +7,15 @@ public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         BinaryTreeClass binaryTreeClass = new BinaryTreeClass();
-        int count = scanner.nextInt();
-        for (int i = 0; i < count; i++){
-            int element = scanner.nextInt();
-            binaryTreeClass.add(element);
-        }
+        System.out.println("Введи элемент массива");
+        int element = scanner.nextInt();
+        binaryTreeClass.BeginAdd(element);
 
-        binaryTreeClass.prefix(binaryTreeClass.getMainRoot());
+
+        binaryTreeClass.BeginPrefix();
         System.out.println();
-        binaryTreeClass.infix(binaryTreeClass.getMainRoot());
+        binaryTreeClass.BeginInfix();
         System.out.println();
-        binaryTreeClass.postfix(binaryTreeClass.getMainRoot());
+        binaryTreeClass.BeginPostfix();
     }
 }

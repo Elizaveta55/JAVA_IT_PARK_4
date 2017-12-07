@@ -13,7 +13,7 @@ public class ComponentsFactory {
         try {
             properties.load(new FileInputStream("application.properties"));
         } catch (IOException e) {
-            throw new IllegalArgumentException();
+            e.getStackTrace();
         }
     }
 
@@ -27,14 +27,15 @@ public class ComponentsFactory {
 
     public HumansDao getHumanDao(DataSource dataSource){
         String humanDaoClassName = properties.getProperty("humanDao.component.class");
+
         try{
             Class<HumansDao> humansDaoClass = (Class<HumansDao>)Class.forName(humanDaoClassName);
             Constructor<HumansDao> humansDaoConstructor = humansDaoClass.getConstructor(DataSource.class);
             HumansDao humansDaoInstance = humansDaoConstructor.newInstance(dataSource);
             return humansDaoInstance;
         } catch (ReflectiveOperationException e){
-            throw new IllegalArgumentException(e);
+            e.getStackTrace();
         }
+        return null;
     }
-
 }

@@ -2,7 +2,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
 import java.util.Scanner;
@@ -25,7 +24,6 @@ public class Main {
         dataSource.setPassword(properties.getProperty("database.password"));
 
         ComponentsFactory componentsFactory = ComponentsFactory.getComponentsFactory();
-                //new ComponentsFactory();
 
         HumansDao humansDao = componentsFactory.getHumanDao(dataSource);
 
@@ -35,7 +33,7 @@ public class Main {
 
         int age;
         Long id;
-        String name, model, color;
+        String name;
         Human human;
 
         while (true) {
@@ -63,14 +61,14 @@ public class Main {
                 case 2:
                     System.out.println("Введи id человека");
                     id = scanner.nextLong();
-                    humanService.deleteUser(humanService.findByID(id));
+                    humanService.deleteUser(id);
                     System.out.println("done");
                     break;
                 case 3:
                     System.out.println("Введи id человека");
                     id = scanner.nextLong();
                     human = humanService.findByID(id);
-                    System.out.println(human.getAge() + ' ' + human.getName());
+                    System.out.println(human.getAge() + " " + human.getName());
                     System.out.println("done");
                     break;
                 case 4:

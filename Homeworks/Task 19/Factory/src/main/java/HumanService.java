@@ -17,12 +17,8 @@ public class HumanService {
         humansDao.save(user);
     }
 
-    public void deleteUser(Human user){
-        String name = user.getName();
-        Human existingHuman = humansDao.findOneByName(name);
-        if (existingHuman != null){
-            humansDao.delete(existingHuman.getId());
-        }
+    public void deleteUser(Long id){
+            humansDao.delete(id);
     }
 
     public Human findByID(Long id){

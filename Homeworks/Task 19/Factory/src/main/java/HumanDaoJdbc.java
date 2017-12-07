@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.*;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Properties;
 
@@ -63,7 +64,7 @@ public class HumanDaoJdbc implements HumansDao {
                 return thatHuman;
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException();
         }
         return null;
     }
@@ -73,7 +74,6 @@ public class HumanDaoJdbc implements HumansDao {
         try {
             Connection connection = DriverManager.getConnection(properties.getProperty("database.url"), properties.getProperty("database.username"), properties.getProperty("database.password"));
             PreparedStatement preparedStatement = connection.prepareStatement(SQL_INSERT_USER);
-//            preparedStatement.setLong(0, model.getId());
             preparedStatement.setInt(1, model.getAge());
             preparedStatement.setString(2, model.getName());
             preparedStatement.execute();
@@ -87,16 +87,17 @@ public class HumanDaoJdbc implements HumansDao {
         Human thatHuman;
         try {
             Connection connection = DriverManager.getConnection(properties.getProperty("database.url"), properties.getProperty("database.username"), properties.getProperty("database.password"));
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(SQL_FIND_BY_ID);
-            if (resultSet != null) {
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL_FIND_BY_ID);
+            preparedStatement.setLong(1, id);
+            ResultSet resultSet =  preparedStatement.executeQuery();
+            if (resultSet.next()) {
                 int age = resultSet.getInt("age");
                 String name = resultSet.getString("name");
                 thatHuman = new Human(id, age, name);
                 return thatHuman;
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException();
         }
         return null;
     }
@@ -130,21 +131,23 @@ public class HumanDaoJdbc implements HumansDao {
     @Override
     public List<Human> findAll() {
         List<Human> humans = null;
+        LinkedList<Human> setOfHumans;
+        setOfHumans = new LinkedList<Human>();
         try {
             Connection connection = DriverManager.getConnection(properties.getProperty("database.url"), properties.getProperty("database.username"), properties.getProperty("database.password"));
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(SQL_FIND_ALL);
-            int i=0;
             while (resultSet.next()) {
-                int id = resultSet.getInt("id");
+                Long id = resultSet.getLong("id");
                 int age = resultSet.getInt("age");
                 String name = resultSet.getString("name");
-//                humans = new Human(id, age, name);
-                i++;
+                Human human = new Human(id, age, name);
+                setOfHumans.add(human);
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException(e);
+            throw new IllegalArgumentException();
         }
+        humans = setOfHumans;
         return humans;
     }
 

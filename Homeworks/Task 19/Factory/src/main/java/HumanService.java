@@ -7,13 +7,15 @@ public class HumanService {
         this.humansDao = humansDao;
     }
 
-    public void registerUser(Human user){
-        String name = user.getName();
+    public void registerUser(String name, int age){
         Human existingHuman = humansDao.findOneByName(name);
         if (existingHuman != null) {
             throw new IllegalArgumentException("Already exist");
         }
-
+        Human user = Human.builder()
+                .name(name)
+                .age(age)
+                .build();
         humansDao.save(user);
     }
 

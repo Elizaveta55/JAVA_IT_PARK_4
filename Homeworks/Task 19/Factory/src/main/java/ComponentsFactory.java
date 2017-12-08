@@ -13,7 +13,7 @@ public class ComponentsFactory {
         try {
             properties.load(new FileInputStream("application.properties"));
         } catch (IOException e) {
-            e.getStackTrace();
+            throw new IllegalArgumentException();
         }
     }
 
@@ -21,13 +21,12 @@ public class ComponentsFactory {
         componentsFactory = new ComponentsFactory();
     }
 
-    public static ComponentsFactory getComponentsFactory(){
+    public static ComponentsFactory getIntance(){
         return componentsFactory;
     }
 
     public HumansDao getHumanDao(DataSource dataSource){
         String humanDaoClassName = properties.getProperty("humanDao.component.class");
-
         try{
             Class<HumansDao> humansDaoClass = (Class<HumansDao>)Class.forName(humanDaoClassName);
             Constructor<HumansDao> humansDaoConstructor = humansDaoClass.getConstructor(DataSource.class);
@@ -35,6 +34,7 @@ public class ComponentsFactory {
             return humansDaoInstance;
         } catch (ReflectiveOperationException e){
             e.getStackTrace();
+            //throw new IllegalArgumentException();
         }
         return null;
     }

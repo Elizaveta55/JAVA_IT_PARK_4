@@ -23,7 +23,7 @@ public class Main {
         dataSource.setUsername(properties.getProperty("database.username"));
         dataSource.setPassword(properties.getProperty("database.password"));
 
-        ComponentsFactory componentsFactory = ComponentsFactory.getComponentsFactory();
+        ComponentsFactory componentsFactory = ComponentsFactory.getIntance();
 
         HumansDao humansDao = componentsFactory.getHumanDao(dataSource);
 
@@ -51,11 +51,11 @@ public class Main {
                     age = scanner.nextInt();
                     System.out.println("Введи имя");
                     name = scanner.next();
-                    human = Human.builder()
-                            .age(age)
-                            .name(name)
-                            .build();
-                    humanService.registerUser(human);
+//                    human = Human.builder()
+//                            .age(age)
+//                            .name(name)
+//                            .build();
+                    humanService.registerUser(name, age);
                     System.out.println("done");
                     break;
                 case 2:

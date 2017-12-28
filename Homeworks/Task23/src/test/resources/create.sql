@@ -1,0 +1,5 @@
+CREATE TABLE humans(
+  id IDENTITY PRIMARY KEY ,
+  name VARCHAR(50),
+  age INTEGER
+);

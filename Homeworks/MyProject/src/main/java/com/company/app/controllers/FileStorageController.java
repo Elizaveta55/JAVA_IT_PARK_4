@@ -1,0 +1,37 @@
+package com.company.app.controllers;
+
+import com.company.app.services.FilesStorageService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import javax.servlet.http.HttpServletResponse;
+
+@Controller
+public class FileStorageController {
+
+    @Autowired
+    private FilesStorageService storageService;
+
+    @PostMapping(value = "/images/avatar")
+    @ResponseBody
+    public String handleImageUpload(@RequestParam("file") MultipartFile file,
+                                    Authentication authentication) {
+        return storageService.saveImage(authentication, file);
+    }
+
+    @PostMapping(value = "/files")
+    @ResponseBody
+    public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+        return storageService.saveFile(file);
+    }
+
+    @GetMapping(value = "/files/{file-name:.+}")
+    public void getFile(@PathVariable("file-name") String fileName,
+                        HttpServletResponse response) {
+        storageService.writeFileToResponse(fileName, response);
+    }
+
+}
